@@ -1,0 +1,24 @@
+{
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 11
+    },
+    "rules": {
+        "semi": "error",
+        "no-var": "error",
+        "prefer-const": "error",
+        "no-undef": "error",
+        "no-use-before-define": ["error", { "functions": false }],
+        "eqeqeq": "error",
+        "no-console": "warn"
+    }
+}
