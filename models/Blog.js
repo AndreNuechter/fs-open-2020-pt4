@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { MONGO_URL } = require('../util/constants.js');
+const { MONGO_URL } = require('../utils/constants.js');
 
 const blogSchema = mongoose.Schema({
     title: String,
