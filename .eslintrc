@@ -20,6 +20,7 @@
         "no-undef": "error",
         "no-use-before-define": ["error", { "functions": false }],
         "eqeqeq": "error",
-        "no-console": "warn"
+        "no-console": "warn",
+        "quotes": ["error", "single"]
     }
 }

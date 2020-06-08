@@ -1,7 +1,7 @@
 {
     "name": "fs-open-pt4",
     "version": "1.0.0",
-    "description": "",
+    "description": "Part 4 of the fullstack open 2020 course exercises",
     "main": "index.js",
     "scripts": {
         "dev": "nodemon index.js",
