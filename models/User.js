@@ -1,28 +1,32 @@
 const mongoose = require('mongoose');
 const { MONGO_URL } = require('../utils/constants.js');
+const uniqueValidator = require('mongoose-unique-validator');
 
-const blogSchema = mongoose.Schema({
-    title: {
+const userSchema = mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        minlength: 3
+    },
+    passwordHash: {
         type: String,
         required: true
     },
-    author: String,
-    url: {
-        type: String,
-        required: true
-    },
-    likes: {
-        type: Number,
-        default: 0
+    name: {
+        type: String
     }
 });
 
 mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
-blogSchema.set('toJSON', {
+userSchema.set('toJSON', {
     transform(_, returnedObject) {
         returnedObject.id = returnedObject._id.toString();
         delete returnedObject._id;
         delete returnedObject.__v;
+        delete returnedObject.passwordHash;
     }
 });
-module.exports = mongoose.model('Blog', blogSchema);
+userSchema.plugin(uniqueValidator);
+
+module.exports = mongoose.model('User', userSchema);

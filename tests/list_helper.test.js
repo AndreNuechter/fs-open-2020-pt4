@@ -1,6 +1,6 @@
 const listHelper = require('../utils/list_helper');
 const { randomArrayIndex, randomArraySubset } = require('./test_helper');
-const testBlogs = require('./blogs');
+const testBlogs = require('./test-blogs');
 
 test('dummy returns one', () => {
     const blogs = [];

@@ -1,6 +1,4 @@
 module.exports = (err, _, res, next) => {
-    console.error(err.message);
-
     // TODO error classes and look-up instead of conditional
     if (err.name === 'CastError') {
         return res

@@ -4,23 +4,27 @@
     "description": "Part 4 of the fullstack open 2020 course exercises",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon index.js",
+        "dev": "cross-env NODE_ENV=development nodemon index.js",
         "lint": "eslint .",
-        "test": "jest --verbose"
+        "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
     },
     "author": "Andre Nuechter",
     "license": "ISC",
     "dependencies": {
+        "bcrypt": "^5.0.0",
         "cors": "^2.8.5",
+        "cross-env": "^7.0.2",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "mongoose": "^5.9.16",
+        "mongoose-unique-validator": "^2.0.3",
         "morgan": "^1.10.0"
     },
     "devDependencies": {
         "eslint": "^7.1.0",
         "jest": "^26.0.1",
-        "nodemon": "^2.0.4"
+        "nodemon": "^2.0.4",
+        "supertest": "^4.0.2"
     },
     "jest": {
         "testEnvironment": "node"
