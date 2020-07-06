@@ -93,9 +93,11 @@ describe('POST /api/blogs/', () => {
 });
 
 describe('DELETE /api/blogs/:id', () => {
-    test('requires a user token and returns status 401 if none is provided', async () => {
+    test('requires a user token and returns status 401 if none or the wrong is provided', async () => {
         const id = testBlogs[0]._id;
+        const wrongToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QtMC42NDk5MzQzMzUyMDkwNzgzIiwiaWQiOiI1ZjAzMzNiNjEzNTk1ZDBkYzA0OTcxNTUiLCJpYXQiOjE1OTQwNjIzMDR9.yll9nIUL8sR4utgjOLJZbnmVcKiZSATqWz3NS20meFk';
         await api(app).delete(`/api/blogs/${id}`).expect(401);
+        await api(app).delete(`/api/blogs/${id}`).set({ Authorization: `bearer ${wrongToken}` }).expect(401);
         await api(app).get(`/api/blogs/${id}`).expect(200);
     });
 
