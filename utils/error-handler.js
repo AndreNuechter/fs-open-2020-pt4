@@ -1,5 +1,4 @@
 module.exports = (err, _, res, next) => {
-    // TODO error classes and look-up instead of conditional
     if (err.name === 'CastError') {
         return res
             .status(400)
@@ -8,9 +7,9 @@ module.exports = (err, _, res, next) => {
         return res
             .status(400)
             .json({ error: err.message });
-    } else if (err.name === 'NotFoundError') {
+    } else if (err.name === 'JsonWebTokenError') {
         return res
-            .status(404)
+            .status(401)
             .json({ error: err.message });
     }
 

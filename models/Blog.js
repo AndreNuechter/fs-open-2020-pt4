@@ -14,7 +14,8 @@ const blogSchema = mongoose.Schema({
     likes: {
         type: Number,
         default: 0
-    }
+    },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
 mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -25,4 +26,5 @@ blogSchema.set('toJSON', {
         delete returnedObject.__v;
     }
 });
+
 module.exports = mongoose.model('Blog', blogSchema);

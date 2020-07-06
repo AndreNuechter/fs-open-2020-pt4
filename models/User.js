@@ -15,7 +15,8 @@ const userSchema = mongoose.Schema({
     },
     name: {
         type: String
-    }
+    },
+    blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }]
 });
 
 mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
