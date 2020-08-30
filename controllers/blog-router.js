@@ -29,7 +29,7 @@ const User = require('../models/User.js');
 
         user.blogs.push(newBlog._id);
         await user.save();
-        response.status(201).json(newBlog);
+        response.status(201).json(await newBlog.execPopulate('user', '-blogs'));
     }),
     Route(DELETE, id, async (request, response) => {
         const { token } = request;
@@ -61,15 +61,13 @@ const User = require('../models/User.js');
     }),
     Route(PUT, id, async (request, response) => {
         const { id } = request.params;
-        const blog = Blog.findById(id);
+        const blog = await Blog.findById(id);
 
         if (!blog) {
             return response.status(404).end();
         }
 
-        const { likes } = request.body;
-
-        await Blog.updateOne({ _id: id }, { likes }, { runValidators: true });
+        await Blog.updateOne({ _id: id }, { likes: blog.likes + 1 }, { runValidators: true });
         response.status(200).end();
     })
 ].forEach(({ method, path, controller }) => router[method](path, controller));
